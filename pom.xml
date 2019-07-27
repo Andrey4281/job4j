@@ -14,7 +14,8 @@
     </properties>
 
 	<modules>
-	</modules>
+        <module>CollectionsPro/Iterator</module>
+    </modules>
 
 	<dependencies>
     	  <dependency>
