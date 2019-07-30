@@ -14,7 +14,8 @@
     </properties>
 
 	<modules>
-        <module>CollectionsPro/Iterator</module>
+        <module>collectionsPro/Iterator</module>
+        <module>collectionsPro/Generic</module>
     </modules>
 
 	<dependencies>
