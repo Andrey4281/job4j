@@ -23,5 +23,4 @@ public class ArrayBasedContainerTest {
         assertThat(container.get(2), is(3));
         assertThat(container.get(3), is(4));
     }
-
 }
