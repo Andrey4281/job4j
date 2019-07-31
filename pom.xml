@@ -16,6 +16,7 @@
 	<modules>
         <module>collectionsPro/Iterator</module>
         <module>collectionsPro/Generic</module>
+        <module>collectionsPro/List</module>
     </modules>
 
 	<dependencies>
