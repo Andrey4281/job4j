@@ -67,6 +67,25 @@ public class LinkedListBasedContainer<E> implements SimpleContainer<E> {
         modCount++;
     }
 
+    public E removeLast() {
+        E res;
+        if (countOfElement == 0) {
+            res = null;
+        } else {
+            res = last.data;
+            if (countOfElement == 1) {
+                first = null;
+                last = null;
+            } else {
+                last.prev.next = null;
+                last = last.prev;
+            }
+            countOfElement--;
+            modCount++;
+        }
+        return res;
+    }
+
     @Override
     public E get(int index) {
         if (index >= countOfElement) {
