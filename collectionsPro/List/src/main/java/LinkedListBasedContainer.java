@@ -102,6 +102,10 @@ public class LinkedListBasedContainer<E> implements SimpleContainer<E> {
         return new LinkedListBasedContainerIterator<>(this);
     }
 
+    public boolean isEmpty() {
+        return countOfElement == 0;
+    }
+
     private E moveFromLastElementToNPositionAndReturnData(int numberOfPosition) {
         Node<E> currentNode = last;
         for (int i = numberOfPosition; i > 0; i--) {

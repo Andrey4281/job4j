@@ -12,4 +12,8 @@ public class SimpleStack<T> {
     public void push(T value) {
         contentOfStack.add(value);
     }
+
+    public boolean isEmpty() {
+        return contentOfStack.isEmpty();
+    }
 }
