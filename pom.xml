@@ -18,6 +18,7 @@
         <module>collectionsPro/Generic</module>
         <module>collectionsPro/List</module>
         <module>collectionsPro/Map</module>
+        <module>collectionsPro/Tree</module>
     </modules>
 
 	<dependencies>
