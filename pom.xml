@@ -19,6 +19,7 @@
         <module>collectionsPro/List</module>
         <module>collectionsPro/Map</module>
         <module>collectionsPro/Tree</module>
+        <module>collectionsPro/CollectionsTest</module>
         <module>inputOutput/input-output</module>
     </modules>
 
