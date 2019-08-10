@@ -20,7 +20,7 @@ public class AnalizyTest {
     @Test
     public void whenInputFileOutputShouldReturnUnavailableTime() {
         analizy.unavailable("./../../server.log", "./../../unavailable.csv");
-        try (BufferedReader reader = new BufferedReader(new FileReader("./../../unavailable.csv"))){
+        try (BufferedReader reader = new BufferedReader(new FileReader("./../../unavailable.csv"))) {
              assertThat(reader.readLine(), is("10:57:01;10:59:01"));
              assertThat(reader.readLine(), is("11:01:02;11:02:02"));
              assertEquals(reader.readLine(), null);
