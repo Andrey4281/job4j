@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Iterator;
@@ -6,14 +7,36 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 public class TreeTest {
-    @Test
-    public void when6ElFindLastThen6() {
-        Tree<Integer> tree = new Tree<>(1);
+    private Tree<Integer> tree;
+    private Tree<Integer> binaryTree;
+    private Tree<String> treeOfString;
+
+    @Before
+    public void setTrees() {
+        tree = new Tree<>(1);
         tree.add(1, 2);
         tree.add(1, 3);
         tree.add(1, 4);
         tree.add(4, 5);
         tree.add(5, 6);
+
+        treeOfString = new Tree<>("One");
+        treeOfString.add("One", "Two");
+        treeOfString.add("One", "Three");
+        treeOfString.add("One", "Four");
+        treeOfString.add("Four", "Five");
+        treeOfString.add("Five", "Six");
+
+        binaryTree = new Tree<>(1);
+        binaryTree.add(1, 2);
+        binaryTree.add(1, 3);
+        binaryTree.add(2, 4);
+        binaryTree.add(2, 6);
+        binaryTree.add(3, 7);
+    }
+
+    @Test
+    public void when6ElFindLastThen6() {
         assertThat(
                 tree.findBy(6).isPresent(),
                 is(true)
@@ -22,14 +45,7 @@ public class TreeTest {
 
     @Test
     public void sequentialOfHasNextAndNextMethodsInvocations() {
-        Tree<String> tree = new Tree<>("One");
-        tree.add("One", "Two");
-        tree.add("One", "Three");
-        tree.add("One", "Four");
-        tree.add("Four", "Five");
-        tree.add("Five", "Six");
-        tree.add("Five", "Two");
-        Iterator<String> iterator = tree.iterator();
+        Iterator<String> iterator = treeOfString.iterator();
 
         assertThat(iterator.hasNext(), is(true));
         assertThat(iterator.next(), is("One"));
@@ -48,12 +64,16 @@ public class TreeTest {
 
     @Test
     public void when6ElFindNotExitThenOptionEmpty() {
-        Tree<Integer> tree = new Tree<>(1);
-        tree.add(1, 2);
         assertThat(
                 tree.findBy(7).isPresent(),
                 is(false)
         );
+    }
+
+    @Test
+    public void isBinary() {
+        assertThat(tree.isBinary(), is(false));
+        assertThat(binaryTree.isBinary(), is(true));
     }
 
 }
