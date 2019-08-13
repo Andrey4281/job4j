@@ -1,10 +1,9 @@
 package archive;
 
+import search.Search;
+
 import java.io.*;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -31,27 +30,14 @@ public class Zip {
     }
 
     private List<File> seekBy(String root, String ext) {
-        List<File> res = new LinkedList<>();
-        Queue<File> queue = new LinkedList<>();
-        queue.offer(new File(root));
-        while (!queue.isEmpty()) {
-            File current = queue.poll();
-            if (!current.isDirectory()) {
-                res.add(current);
-            } else {
-                Arrays.stream(current.listFiles())
-                        .filter(file -> !(file.getName().matches(ext)))
-                        .forEach(queue::offer);
-            }
-        }
-        return res;
+        return new Search().findFilesByPredicate(root, file -> !(file.getName().matches(ext)));
     }
 
     public static void main(String[] args) {
-        System.out.println(Zip.class.getName());
         Zip zip = new Zip();
         Args argsForZip = new Args(args);
-        zip.pack(argsForZip.directory(),
-                argsForZip.output(), argsForZip.excule());
+        Map<String, String> map = argsForZip.parse();
+        zip.pack(new File(map.get("-d")),
+                new File(map.get("-o")), map.get("-e"));
     }
 }
