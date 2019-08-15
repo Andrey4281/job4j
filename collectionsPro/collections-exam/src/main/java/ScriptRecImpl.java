@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class ScriptRecImpl implements Script{
+public class ScriptRecImpl implements Script {
     @Override
     public List<Integer> load(Map<Integer, List<Integer>> ds, Integer scriptId) {
         LinkedHashSet<Integer> res = new LinkedHashSet<>();

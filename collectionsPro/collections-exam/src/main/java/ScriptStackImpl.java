@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class ScriptStackImpl implements Script{
+public class ScriptStackImpl implements Script {
     private static final class NodeOfTree {
         private Integer root;
         private Iterator<Integer> childs;
