@@ -15,8 +15,7 @@ public class Search {
         exts.add(".csv");
         exts.add(".java");
         List<File> list = search.files("/home/andrey/Документы/JavaCourseJob4j/job4j", exts);
-        for (File el:
-                list) {
+        for (File el: list) {
             System.out.println(el.getName());
         }
         System.out.println(System.getProperty("java.io.tmpdir"));
@@ -55,11 +54,10 @@ public class Search {
 
     private String buildPatternForSearch(List<String> exts) {
         StringBuilder patternForSearch = new StringBuilder("[^\\.]+(");
-        for (String el:
-                exts) {
+        for (String el: exts) {
             patternForSearch.append("\\").append(el).append('|');
         }
-        patternForSearch.setCharAt(patternForSearch.length()-1,')');
+        patternForSearch.setCharAt(patternForSearch.length() - 1, ')');
         return patternForSearch.toString();
     }
 }
