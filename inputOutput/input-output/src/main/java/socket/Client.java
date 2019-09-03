@@ -32,9 +32,10 @@ public class Client {
         do {
             question = console.nextLine();
             out.println(question);
-            String str;
-            while (!(str = in.readLine()).isEmpty()) {
+            String str = in.readLine();
+            while (!str.isEmpty()) {
                 System.out.println(str);
+                str = in.readLine();
             }
         } while (!question.equals("exit"));
     }
