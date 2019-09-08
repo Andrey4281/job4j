@@ -1,0 +1,33 @@
+﻿--1
+SELECT c.id AS car_id, c.name, e.id AS engine_id, e.name, ca.id AS carcass_id, ca.name, t.id AS transmission_id, t.name
+FROM cars AS c
+INNER JOIN engine AS e ON c.id_engine = e.id
+INNER JOIN carcass AS ca ON c.id_carcass = ca.id
+INNER JOIN transmission AS t ON c.id_transmission = t.id;
+
+--2
+SELECT engine.id, engine.name
+FROM engine LEFT OUTER JOIN cars ON engine.id = cars.id_engine
+WHERE cars.id IS NULL;
+
+SELECT carcass.id, carcass.name
+FROM carcass LEFT OUTER JOIN cars ON carcass.id = cars.id_carcass
+WHERE cars.id IS NULL;
+
+SELECT transmission.id, transmission.name
+FROM transmission LEFT OUTER JOIN cars ON transmission.id = cars.id_transmission
+WHERE cars.id IS NULL;
+
+SELECT t.id, t.name FROM (
+SELECT engine.id, engine.name
+FROM engine LEFT OUTER JOIN cars ON engine.id = cars.id_engine
+WHERE cars.id IS NULL
+UNION
+SELECT carcass.id, carcass.name
+FROM carcass LEFT OUTER JOIN cars ON carcass.id = cars.id_carcass
+WHERE cars.id IS NULL
+UNION
+SELECT transmission.id, transmission.name
+FROM transmission LEFT OUTER JOIN cars ON transmission.id = cars.id_transmission
+WHERE cars.id IS NULL
+) AS t;
