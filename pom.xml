@@ -22,6 +22,7 @@
         <module>collectionsPro/CollectionsTest</module>
         <module>inputOutput/input-output</module>
         <module>collectionsPro/collections-exam</module>
+        <module>sqlJDBC/jdbc</module>
     </modules>
 
 	<dependencies>
