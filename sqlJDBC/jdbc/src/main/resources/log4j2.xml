@@ -7,7 +7,7 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="packageOne" level="trace" additivity="false">
+        <Logger name="tracker.sql" level="info" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
 
