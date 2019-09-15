@@ -25,8 +25,7 @@ public class Analize {
         if (previous != null && current != null) {
             Map<Integer, User> mapForCurrent = saveCurrentToMap(current);
 
-            for (User userFromPrevious:
-                 previous) {
+            for (User userFromPrevious: previous) {
                 User userFromCurrent =
                         mapForCurrent.get(userFromPrevious.id);
                 if (userFromCurrent == null) {
@@ -44,8 +43,7 @@ public class Analize {
         Map<Integer, User> mapForCurrent =
                 new HashMap<>(current.size() + 1, 1);
 
-        for (User user:
-                current) {
+        for (User user: current) {
             mapForCurrent.put(user.id, user);
         }
 
