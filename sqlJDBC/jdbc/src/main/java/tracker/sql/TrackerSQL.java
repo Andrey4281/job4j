@@ -16,6 +16,10 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     private Connection connection;
     private String config;
 
+    public TrackerSQL(Connection connection) {
+        this.connection = connection;
+    }
+
     public TrackerSQL(final String config) {
         this.config = config;
     }
@@ -41,22 +45,30 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     }
 
     @Override
-    public Item add(Item item) {
-        try (PreparedStatement st =
-                     connection.prepareStatement("INSERT INTO items(name) VALUES(?);")) {
-            st.setString(1, item.getName());
-            st.execute();
+        public Item add(Item item) {
+        try (final PreparedStatement statement = this.connection
+                .prepareStatement("insert into items (name, description) values (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, item.getName());
+            statement.setString(2, item.getDescription());
+            statement.executeUpdate();
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    item.setId(generatedKeys.getString(1));
+                    return item;
+                }
+            }
         } catch (SQLException e) {
             LOG.error("Invalid add operation", e);
         }
-        return item;
+        throw new IllegalStateException("Could not create new user");
     }
 
     @Override
     public void replace(String id, Item item) {
-        try (PreparedStatement st = connection.prepareStatement("UPDATE items SET name=? WHERE id=?;")) {
+        try (PreparedStatement st = connection.prepareStatement("UPDATE items SET name=?,description=? WHERE id=?;")) {
             st.setString(1, item.getName());
-            st.setInt(2, Integer.parseInt(id));
+            st.setString(2, item.getDescription());
+            st.setInt(3, Integer.parseInt(id));
             st.execute();
         } catch (SQLException e) {
             LOG.error("Invalid update operation", e);
@@ -107,7 +119,8 @@ public class TrackerSQL implements ITracker, AutoCloseable {
             st.setInt(1, Integer.parseInt(id));
             try (ResultSet set = st.executeQuery()) {
                 if (set.next()) {
-                    item = new Item(set.getString("id"), set.getString("name"));
+                    item = new Item(set.getString("id"), set.getString("name"),
+                            set.getString("description"));
                 }
             }
         } catch (SQLException e) {
@@ -124,7 +137,8 @@ public class TrackerSQL implements ITracker, AutoCloseable {
     private Item[] handleResultSet(ResultSet set) throws SQLException {
         List<Item> itemList = new LinkedList<>();
         while (set.next()) {
-            itemList.add(new Item(set.getString("id"), set.getString("name")));
+            itemList.add(new Item(set.getString("id"), set.getString("name"),
+                    set.getString("description")));
         }
         return itemList.stream().toArray(Item[]::new);
     }
