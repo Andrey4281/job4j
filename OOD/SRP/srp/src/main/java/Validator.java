@@ -34,9 +34,13 @@ public class Validator {
     }
 
     public void checkOperation(String operation) {
-        if (!operation.matches("[\\+\\-\\*/]")) {
+            checkOperationByRegExpr(operation, "[\\+\\-\\*/]", "Operation must be equal + or - or * or /");
+    }
+
+    protected void checkOperationByRegExpr(String operation, String regExpr, String errorMessage) {
+        if (!operation.toLowerCase().matches(regExpr)) {
             throw new ErrorOfInputOutput(Joiner.on(LN).join("Invalid operation",
-                    "Operation must be equal + or - or * or /", ""));
+                    errorMessage, ""));
         }
     }
 }

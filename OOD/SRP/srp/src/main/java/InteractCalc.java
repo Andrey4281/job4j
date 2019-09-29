@@ -7,8 +7,9 @@ import com.google.common.base.Joiner;
  * @version 1
  */
 public class InteractCalc {
-    private static final String LN = System.getProperty("line.separator");
-    private final Calculator calculator;
+    protected final String LN = System.getProperty("line.separator");
+    protected final String listSupportedOperations = "[+-/*]";
+    protected final Calculator calculator;
     private final Console console;
     private final Validator validator;
 
@@ -41,16 +42,29 @@ public class InteractCalc {
             String sOperation = console.input();
             validator.checkOperation(sOperation);
 
-            console.output(Joiner.on(LN).join("Enter the second argument", ""));
-            double second = getArgument();
-
-            first = evalulateResult(first, second, sOperation);
+            first = evaluateResultInDependFromTypeOfOperation(first, sOperation);
             console.output(Joiner.on(LN).join("Result of operation", first, ""));
 
             console.output(Joiner.on(LN).join("Choose new option NC or PV or exit", ""));
             option = console.input();
             validator.checkOption(option);
         }
+    }
+
+    protected String prepareListOfOperation() {
+        return Joiner.on(LN).join("This is interactive calculator",
+                "Calcalutor support folowing operations:",
+                "Addition (sign of operation is +);",
+                "Subtraction (sign of operation is -);",
+                "Multiplication (sign of operation is *);",
+                "Division (sign of operation is /);");
+    }
+
+    protected double evaluateResultInDependFromTypeOfOperation(double first, String sOperation) {
+        console.output(Joiner.on(LN).join("Enter the second argument", ""));
+        double second = getArgument();
+
+        return evalulateResult(first, second, sOperation);
     }
 
     /**
@@ -77,12 +91,7 @@ public class InteractCalc {
      * @return Help for user.
      */
     private String printHelp() {
-        return Joiner.on(LN).join("This is interactive calculator",
-                "Calcalutor support folowing operations:",
-                "Addition (sign of operation is +);",
-                "Subtraction (sign of operation is -);",
-                "Multiplication (sign of operation is *);",
-                "Division (sign of operation is /);",
+        return Joiner.on(LN).join(prepareListOfOperation(),
                 "Choose one from the next option:",
                 "Begin new calculation (sign of option is NC);",
                 "Use previous value for calculations (sign of option is PV, default value of previous value is 0);",
@@ -97,7 +106,7 @@ public class InteractCalc {
     }
 
     public static void main(String[] args) {
-        InteractCalc interactCalc = new InteractCalc(new Calculator(), new Console(System.in, System.out), new Validator());
+        InteractCalc interactCalc = new AdvancedInteractCalc(new EngineerCalculator(), new Console(System.in, System.out), new EngineerValidator());
         interactCalc.start();
     }
 
