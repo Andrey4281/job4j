@@ -2,8 +2,6 @@ import com.google.common.base.Joiner;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * Interactive calculator.
@@ -12,12 +10,12 @@ import java.util.function.Supplier;
  * @version 1
  */
 public class InteractCalc {
-    private static final String LN = System.getProperty("line.separator");
+    protected final String LN = System.getProperty("line.separator");
     private final Calculator calculator;
     private final Console console;
     private final Validator validator;
     private double currentResult = 0;
-    private final Map<String, BinaryOperations> supportedBinaryOperations;
+    protected final Map<String, Operation> supportedBinaryOperations;
 
     /**
      * Constructor.
@@ -29,10 +27,10 @@ public class InteractCalc {
         this.console = console;
         this.validator = validator;
         this.supportedBinaryOperations = new HashMap<>();
-        this.supportedBinaryOperations.put("+", this.calculator::addition);
-        this.supportedBinaryOperations.put("-", this.calculator::subtraction);
-        this.supportedBinaryOperations.put("*", this.calculator::multiplication);
-        this.supportedBinaryOperations.put("/", this.calculator::division);
+        this.supportedBinaryOperations.put("+", (double[] args)->{return this.calculator.addition(args[0], args[1]);});
+        this.supportedBinaryOperations.put("-", (double[] args)->{return this.calculator.subtraction(args[0], args[1]);});
+        this.supportedBinaryOperations.put("*", (double[] args)->{return this.calculator.multiplication(args[0], args[1]);});
+        this.supportedBinaryOperations.put("/", (double[] args)->{return this.calculator.division(args[0], args[1]);});
     }
 
 
@@ -79,7 +77,7 @@ public class InteractCalc {
 
     protected double evaluateResultInDependFromTypeOfOperation(double first, String sOperation) {
         double second = getArgument();
-        return supportedBinaryOperations.get(sOperation).apply(first, second);
+        return supportedBinaryOperations.get(sOperation).apply(new double[]{first, second});
     }
 
     /**
