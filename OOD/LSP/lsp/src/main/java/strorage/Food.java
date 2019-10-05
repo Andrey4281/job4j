@@ -11,6 +11,8 @@ public class Food {
     private final double price;
     private boolean disscount;
     private int id_storage_for_food;
+    private boolean canReproduct;
+    private boolean neededMinusTemperature;
 
     public Food(String name, Calendar expaireDate, Calendar createDate, double price, boolean disscount) {
         this.name = name;
@@ -18,6 +20,12 @@ public class Food {
         this.createDate = createDate;
         this.price = price;
         this.disscount = disscount;
+    }
+
+    public Food(String name, Calendar expaireDate, Calendar createDate, double price, boolean disscount, boolean canReproduct, boolean neededMinusTemperature) {
+        this(name, expaireDate, createDate, price, disscount);
+        this.canReproduct = canReproduct;
+        this.neededMinusTemperature = neededMinusTemperature;
     }
 
     public double getPercentOfExpaireDate() {
@@ -34,6 +42,22 @@ public class Food {
 
     public boolean getDisscount() {
         return disscount;
+    }
+
+    public void setCanReproduct(boolean canReproduct) {
+        this.canReproduct = canReproduct;
+    }
+
+    public boolean getCanReproduct() {
+        return  canReproduct;
+    }
+
+    public void setNeededMinusTemperature(boolean neededMinusTemperature) {
+        this.neededMinusTemperature = neededMinusTemperature;
+    }
+
+    public boolean getneededMinusTemperature() {
+        return neededMinusTemperature;
     }
 
 }

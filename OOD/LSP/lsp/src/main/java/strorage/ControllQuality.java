@@ -11,7 +11,10 @@ public class ControllQuality {
 
     public void distributeFoodInStorage(List<? extends Food> products) {
         List<Storage> storages = daoForStorage.loadAllStorages();
+        addProductsToStorages(products, storages);
+    }
 
+    protected void addProductsToStorages(List<? extends Food> products, List<Storage> storages) {
         for (Food currentProduct: products) {
             for (Storage currentStorage: storages) {
                 if (currentStorage.acceptable(currentProduct)) {

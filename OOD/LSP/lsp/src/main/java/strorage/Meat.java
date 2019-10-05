@@ -9,4 +9,9 @@ public class Meat extends Food {
         super(name, expaireDate, createDate, price, disscount);
         this.kindOfMeat = kindOfMeat;
     }
+
+    public Meat(String name, Calendar expaireDate, Calendar createDate, double price, boolean disscount, String kindOfMeat, boolean canReproduct, boolean neededMinusTemperature) {
+        super(name, expaireDate, createDate, price, disscount, canReproduct, neededMinusTemperature);
+        this.kindOfMeat = kindOfMeat;
+    }
 }
