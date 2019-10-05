@@ -58,6 +58,7 @@
         <module>sqlJDBC/jdbc</module>
         <module>tracker</module>
         <module>sqlJDBC/parservacancy</module>
+        <module>OOD/LSP/lsp</module>
     </modules>
 
 	<dependencies>
