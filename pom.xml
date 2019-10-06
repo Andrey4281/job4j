@@ -59,6 +59,7 @@
         <module>tracker</module>
         <module>sqlJDBC/parservacancy</module>
         <module>OOD/SRP/srp</module>
+        <module>OOD/ISP/isp</module>
     </modules>
 
 	<dependencies>
