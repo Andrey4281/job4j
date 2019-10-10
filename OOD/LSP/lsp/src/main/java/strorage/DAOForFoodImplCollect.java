@@ -20,4 +20,11 @@ public class DAOForFoodImplCollect implements DAOForFood {
     public List<Food> getAllProducts() {
         return new LinkedList<>(storage);
     }
+
+    @Override
+    public List<Food> removeAllProducts() {
+        List result = new LinkedList(storage);
+        storage.removeAll(storage);
+        return result;
+    }
 }

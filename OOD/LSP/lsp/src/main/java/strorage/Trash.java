@@ -24,4 +24,9 @@ public class Trash implements Storage {
     public List<Food> getAllProducts() {
         return strorage.getAllProducts();
     }
+
+    @Override
+    public List<Food> removeAllProducts() {
+        return strorage.removeAllProducts();
+    }
 }

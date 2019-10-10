@@ -6,4 +6,5 @@ public interface Storage {
     boolean acceptable(Food food);
     void add(Food food);
     List<Food> getAllProducts();
+    List<Food> removeAllProducts();
 }

@@ -23,4 +23,9 @@ public abstract class StorageDecorator implements Storage {
     public List<Food> getAllProducts() {
         return storage.getAllProducts();
     }
+
+    @Override
+    public List<Food> removeAllProducts() {
+        return storage.removeAllProducts();
+    }
 }

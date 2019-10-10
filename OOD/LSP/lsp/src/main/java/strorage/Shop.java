@@ -32,5 +32,8 @@ public class Shop implements Storage {
         if (value >= 75) food.setDisscount(true);
     }
 
-
+    @Override
+    public List<Food> removeAllProducts() {
+        return strorage.removeAllProducts();
+    }
 }

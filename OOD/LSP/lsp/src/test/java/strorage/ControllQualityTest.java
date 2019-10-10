@@ -53,6 +53,7 @@ public class ControllQualityTest {
         products.add(new Milk("sour cream", expaireDateForMilkKindTwo, createDateForMilkKindTwo, 70, false, 5));
 
         controllQuality.distributeFoodInStorage(products);
+        controllQuality.resort();
         List<Food> listOfWareHouse = warehhouse.getAllProducts();
         List<Food> listOfTrash = trash.getAllProducts();
         List<Food> listOfShop = shop.getAllProducts();

@@ -25,5 +25,10 @@ public class Warehouse implements Storage {
         return strorage.getAllProducts();
     }
 
+    @Override
+    public List<Food> removeAllProducts() {
+        return strorage.removeAllProducts();
+    }
+
 
 }

@@ -61,6 +61,7 @@ public class ContorllQualityTestNewFunctionall {
         products.add(new Vegetables("carrot", expaireDateForVegetables, createDateForVegetables, 70, false,false));
 
         controllQuality.distributeFoodInStorage(products);
+        controllQuality.resort();
         List<Food> listOfNewWareHouse = newWarehouse.getAllProducts();
         List<Food> listOfTrash = trash.getAllProducts();
         List<Food> listOfRecycler = recycler.getAllProducts();
