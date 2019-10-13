@@ -61,6 +61,7 @@
         <module>OOD/SRP/srp</module>
         <module>OOD/LSP/lsp</module>
         <module>OOD/ISP/isp</module>
+        <module>OOD/EXAM/exam</module>
     </modules>
 
 	<dependencies>
