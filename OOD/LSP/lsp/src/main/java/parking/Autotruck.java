@@ -23,8 +23,7 @@ public class Autotruck implements Car {
     public boolean takeParkingSpace(Parking parking) {
         boolean res = false;
         if (parking.getCountFreePlaceForAutotruck() >= 1) {
-            res = true;
-            parking.placeInPlacesForAutotruck(this);
+            res = parking.placeInPlacesForAutotruck(this);
         } else if (parking.getCountFreePlaceForPassengerCar() >= getSizeOfCar()) {
             res = parking.placeInPlacesForPassengerCar(this);
         }
