@@ -63,6 +63,7 @@
         <module>OOD/ISP/isp</module>
         <module>OOD/TDD/tdd</module>
         <module>OOD/EXAM/exam</module>
+        <module>GC/gc</module>
     </modules>
 
 	<dependencies>
