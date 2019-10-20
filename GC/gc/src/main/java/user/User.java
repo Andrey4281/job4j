@@ -16,9 +16,10 @@ public class User {
     }
 
     public static void main(String[] args) {
+        long start = System.currentTimeMillis();
         int mb = 1024 * 1024;
         Runtime runtime = Runtime.getRuntime();
-        for (int i = 0 ; i <10000; i++) {
+        for (int i = 0 ; i <100000; i++) {
             System.out.println("Used memory " + (runtime.totalMemory() - runtime.freeMemory()) / mb);
             User user = new User("a");
             user = null;
