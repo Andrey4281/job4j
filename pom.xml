@@ -137,6 +137,12 @@
             <artifactId>log4j-core</artifactId>
             <version>2.11.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>14-ea+1</version>
+        </dependency>
     </dependencies>
 
     <build>
