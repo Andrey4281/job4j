@@ -11,7 +11,7 @@ public class ParkingTest {
 
     @Test
     public void sequenceOfPlaceInPlacesForPassengerCarMethodInvocations() {
-        Parking parking = null;
+        Parking parking = new ParkingImpl();
         parking.initialize(3, 0);
         Car carOne = new PassengerCar("carOne");
         Car carTwo = new Autotruck("carTwo", 2);
@@ -23,17 +23,17 @@ public class ParkingTest {
 
     @Test
     public void whenCallPlaceInPlacesForAutotruckShouldReduceCountOfPlacesForAutotruck() {
-        Parking parking = null;
+        Parking parking = new ParkingImpl();
         parking.initialize(0, 1);
         Car car = new Autotruck("car", 2);
 
         assertThat(parking.placeInPlacesForAutotruck(car), is(true));
-        assertThat(parking.getCountFreePlaceForAutotruck(), is(1));
+        assertThat(parking.getCountFreePlaceForAutotruck(), is(0));
     }
 
     @Test
     public void sequenceOfRemoveCarFromParkingMethodInvocation() {
-        Parking parking = null;
+        Parking parking = new ParkingImpl();
         parking.initialize(1, 1);
         Car carOne = new PassengerCar("carOne");
         Car carTwo = new Autotruck("carTwo", 2);
@@ -49,7 +49,7 @@ public class ParkingTest {
 
     @Test
     public void whenPlaceCarShouldReturnAfterGetPlaceWhereLocatedCarMethodInvocationListOfPlaces() {
-        Parking parking = null;
+        Parking parking = new ParkingImpl();
         parking.initialize(1, 1);
         Car carOne = new PassengerCar("carOne");
         Car carTwo = new Autotruck("carThree", 10);

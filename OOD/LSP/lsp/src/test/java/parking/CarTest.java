@@ -9,7 +9,7 @@ public class CarTest {
 
     @Test
     public void sequenceOfTakeParkingSpaceMethodInvocations() {
-        Parking parking = null;
+        Parking parking = new ParkingImpl();
         parking.initialize(3, 1);
         Car carOne = new PassengerCar("carOne");
         Car carTwo = new Autotruck("carTwo", 2);
