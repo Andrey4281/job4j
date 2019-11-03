@@ -17,16 +17,24 @@ public class SimpleBlockingQueueTest {
         Thread consumer = new Thread() {
             @Override
             public void run() {
-                actualElements.add(queue.poll());
-                actualElements.add(queue.poll());
+                try {
+                    actualElements.add(queue.poll());
+                    actualElements.add(queue.poll());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         };
 
         Thread producer = new Thread() {
             @Override
             public void run() {
-                queue.offer(1);
-                queue.offer(2);
+                try {
+                    queue.offer(1);
+                    queue.offer(2);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         };
 
