@@ -1,4 +1,7 @@
-import org.junit.Assert;
+package list;
+
+import list.ArrayBasedContainer;
+import list.SimpleContainer;
 import org.junit.Before;
 import org.junit.Test;
 

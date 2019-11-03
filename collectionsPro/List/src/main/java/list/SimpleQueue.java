@@ -1,3 +1,5 @@
+package list;
+
 public class SimpleQueue<T> {
     private SimpleStack<T> stackForPushingElements;
     private SimpleStack<T> stackForPollintElements;

@@ -1,3 +1,6 @@
+package list;
+
+import list.SimpleQueue;
 import org.junit.Before;
 import org.junit.Test;
 

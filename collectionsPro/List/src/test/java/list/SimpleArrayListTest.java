@@ -1,7 +1,8 @@
+package list;
+
+import list.SimpleArrayList;
 import org.junit.Test;
 import org.junit.Before;
-
-import java.util.ArrayList;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;

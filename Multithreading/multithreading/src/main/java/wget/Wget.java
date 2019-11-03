@@ -31,7 +31,7 @@ public class Wget implements Runnable {
                     long actualPeriod = endTime - startTime;
                     double expectedPeriod = countOfByte  / speed;
                     if (actualPeriod < expectedPeriod) {
-                        Thread.currentThread().sleep((long)(expectedPeriod - actualPeriod) + 1);
+                        Thread.currentThread().sleep((long) (expectedPeriod - actualPeriod) + 1);
                     }
                     startTime = System.currentTimeMillis();
                     countOfByte = reader.read(buffer);

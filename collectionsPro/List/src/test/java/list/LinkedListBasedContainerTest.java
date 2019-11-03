@@ -1,3 +1,7 @@
+package list;
+
+import list.LinkedListBasedContainer;
+import list.SimpleContainer;
 import org.junit.Before;
 import org.junit.Test;
 

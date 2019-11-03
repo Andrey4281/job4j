@@ -1,3 +1,6 @@
+package list;
+
+import list.SimpleSet;
 import org.junit.Before;
 import org.junit.Test;
 

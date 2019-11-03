@@ -1,3 +1,5 @@
+package list;
+
 public class SimpleArrayList<E> {
 
     private int size;

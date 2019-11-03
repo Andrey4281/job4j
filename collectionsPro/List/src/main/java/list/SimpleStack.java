@@ -1,3 +1,7 @@
+package list;
+
+import list.LinkedListBasedContainer;
+
 public class SimpleStack<T> {
     private LinkedListBasedContainer<T> contentOfStack;
 
