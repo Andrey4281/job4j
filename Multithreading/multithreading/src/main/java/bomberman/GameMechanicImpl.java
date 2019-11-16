@@ -30,10 +30,15 @@ public class GameMechanicImpl implements GameMechanic {
     public static void main(String[] args) throws InterruptedException {
         Map<Cell, String> map = new HashMap<>();
         map.put(new Cell(4, 4), "Exit");
-        Board board = new BoardImpl(5, 5, map);
-        Runnable player = new Player(new Cell(0, 0), board);
+        map.put(new Cell(3, 3), "Stone");
+        Board board = new ExtensedBoard(5, 5, map);
+        BomberMan bomberMan = new BomberMan(new Cell(0, 0), board, null, null);
+        Player monster = new Monster(new Cell(0, 3), board, bomberMan);
+
         List<Runnable> tasks = new LinkedList<>();
-        tasks.add(player);
+        tasks.add(bomberMan);
+        tasks.add(monster);
+
         GameMechanic gameMechanic = new GameMechanicImpl(tasks);
         gameMechanic.beginGame();
         Thread.sleep(7000);

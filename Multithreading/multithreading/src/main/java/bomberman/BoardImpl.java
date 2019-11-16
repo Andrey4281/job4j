@@ -11,7 +11,8 @@ public class BoardImpl implements Board {
     private final Lock[][] locks;
     private final int sizeX;
     private final int sizeY;
-    private final Map<Cell, String> characteristicCells;
+    private volatile boolean winner;
+    protected final Map<Cell, String> characteristicCells;
 
     public BoardImpl(int sizeX, int sizeY, Map<Cell, String> characteristicCells) {
         this.sizeX = sizeX;
@@ -62,6 +63,16 @@ public class BoardImpl implements Board {
         boolean res = false;
         if (characteristicCells.get(currentCell) != null
                 && characteristicCells.get(currentCell).equals("Exit")) {
+            res = true;
+        }
+        return res;
+    }
+
+    @Override
+    public boolean moveIsStone(Cell currentCell) {
+        boolean res = false;
+        if (characteristicCells.get(currentCell) != null
+                && characteristicCells.get(currentCell).equals("Stone")) {
             res = true;
         }
         return res;
