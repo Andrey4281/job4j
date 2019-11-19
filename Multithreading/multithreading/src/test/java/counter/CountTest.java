@@ -22,7 +22,7 @@ public class CountTest {
 
     @Test
     public void whenExecute2ThreadThen2() throws InterruptedException {
-        final Count count = new Count();
+        final Count count = new CountWithVolatileVariable();
         Thread first = new ThreadCount(count);
         Thread second = new ThreadCount(count);
 
