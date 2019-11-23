@@ -1,0 +1,12 @@
+<web-app>
+    <servlet>
+        <servlet-name>presentation.UserServlet</servlet-name>
+        <servlet-class>presentation.UserServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>presentation.UserServlet</servlet-name>
+        <url-pattern>/users</url-pattern>
+    </servlet-mapping>
+</web-app>

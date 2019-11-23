@@ -66,6 +66,7 @@
         <module>GC/gc</module>
         <module>Multithreading/multithreading</module>
         <module>servlet/simpleservlet</module>
+        <module>servlet/webapparc</module>
     </modules>
 
 	<dependencies>
