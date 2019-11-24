@@ -45,6 +45,11 @@ public class ValidateImpl implements Validate {
     }
 
     @Override
+    public User findById(int id) {
+        return store.findById(id);
+    }
+
+    @Override
     public List<User> findAll() {
         return store.findAll();
     }

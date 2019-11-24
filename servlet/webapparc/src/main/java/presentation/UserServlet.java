@@ -57,6 +57,11 @@ public class UserServlet extends HttpServlet {
             user.setId(Integer.parseInt(req.getParameter("id")));
         }
         user.setName(req.getParameter("name"));
+        user.setLogin(req.getParameter("login"));
+        user.setEmail(req.getParameter("email"));
+        if (req.getParameter("createDate") != null && req.getParameter("createDate") != "") {
+            user.setCreateDate(Long.parseLong(req.getParameter("createDate")));
+        }
         if (!pattern.dispatch.get(req.getParameter("action")).apply(user)) {
             resp.setContentType("text/html");
             resp.getOutputStream().println("Invalid operation!");

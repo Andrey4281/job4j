@@ -5,8 +5,39 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <servlet>
+        <servlet-name>presentation.UserCreateServlet</servlet-name>
+        <servlet-class>presentation.UserCreateServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>presentation.UserUpdateServlet</servlet-name>
+        <servlet-class>presentation.UserUpdateServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>presentation.UsersServlet</servlet-name>
+        <servlet-class>presentation.UsersServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>presentation.UserServlet</servlet-name>
-        <url-pattern>/users</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>presentation.UserCreateServlet</servlet-name>
+        <url-pattern>/create</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>presentation.UserUpdateServlet</servlet-name>
+        <url-pattern>/edit</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>presentation.UsersServlet</servlet-name>
+        <url-pattern>/list</url-pattern>
+    </servlet-mapping>
+
 </web-app>
