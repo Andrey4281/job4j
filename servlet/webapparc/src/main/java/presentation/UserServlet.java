@@ -66,5 +66,6 @@ public class UserServlet extends HttpServlet {
             resp.setContentType("text/html");
             resp.getOutputStream().println("Invalid operation!");
         }
+        resp.sendRedirect(String.format("%s/index.jsp", req.getContextPath()));
     }
 }
