@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class User {
@@ -7,14 +8,14 @@ public class User {
     private String name;
     private String login;
     private String email;
-    private long createDate;
+    private Date createDate;
 
     public User() {
 
     }
 
 
-    public User(int id, String name, String login, String email, long createDate) {
+    public User(int id, String name, String login, String email, Date createDate) {
         this.id = id;
         this.name = name;
         this.login = login;
@@ -42,7 +43,7 @@ public class User {
         this.email = email;
     }
 
-    public void setCreateDate(long createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -58,7 +59,7 @@ public class User {
         return email;
     }
 
-    public long getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 

@@ -1,6 +1,7 @@
 package logic;
 
 import model.User;
+import persistent.DBStore;
 import persistent.Store;
 import persistent.StoreMemory;
 
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class ValidateImpl implements Validate {
     private static final Validate INSTANCE = new ValidateImpl();
-    private final Store store = StoreMemory.INSTANCE;
+    private final Store store = DBStore.getInstance();
 
     private ValidateImpl() {
 

@@ -1,7 +1,6 @@
 package persistent;
 
 import model.User;
-
 import java.util.List;
 
 public interface Store {

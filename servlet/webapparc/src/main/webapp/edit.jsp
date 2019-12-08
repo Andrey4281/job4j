@@ -25,7 +25,6 @@ User not found!
     Name: <input type="text" name="name" value="<%=user.getName()%>"/><br>
     Login: <input type="text" name="login" value="<%=user.getLogin()%>"/><br>
     Email: <input type="text" name="email" value="<%=user.getEmail()%>"/><br>
-    CreateDate: <input type="text" name="createDate" value="<%=user.getCreateDate()%>"/><br>
     <input type="hidden" name="action" value="update"/>
     <input type="hidden" name="id" value="<%=user.getId()%>"/>
     Submit: <input type='submit' value='edit'/>

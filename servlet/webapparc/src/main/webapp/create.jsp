@@ -15,7 +15,6 @@
     Name: <input type="text" name="name"/><br>
     Login: <input type="text" name="login"/><br>
     Email: <input type="text" name="email"/><br>
-    CreateDate: <input type="text" name="createDate"/><br>
     <input type="hidden" name="action" value="add"/>
     Submit: <input type='submit' value='create'/>
 </form>
