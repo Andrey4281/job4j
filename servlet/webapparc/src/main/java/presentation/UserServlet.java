@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -33,15 +32,17 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<User> list = logic.findAll();
-        StringBuilder message = new StringBuilder();
-        if (list.isEmpty()) {
-            message.append("It is not exists users in system");
+        String address;
+        if ("update".equals(req.getParameter("action"))) {
+            address = "/WEB-INF/Views/edit.jsp";
+            req.setAttribute("user", logic.findById(Integer.parseInt(req.getParameter("id"))));
+        } else if ("add".equals(req.getParameter("action"))) {
+            address = "/WEB-INF/Views/create.jsp";
         } else {
-            list.stream().forEach(u->message.append(u.getName()).append(LN));
+            address = "/WEB-INF/Views/index.jsp";
+            req.setAttribute("users", logic.findAll());
         }
-        resp.setContentType("text/html");
-        resp.getOutputStream().print(message.toString());
+        req.getRequestDispatcher(address).forward(req, resp);
     }
 
     @Override
@@ -63,6 +64,6 @@ public class UserServlet extends HttpServlet {
             resp.setContentType("text/html");
             resp.getOutputStream().println("Invalid operation!");
         }
-        resp.sendRedirect(String.format("%s/index.jsp", req.getContextPath()));
+        resp.sendRedirect(String.format("%s/", req.getContextPath()));
     }
 }
