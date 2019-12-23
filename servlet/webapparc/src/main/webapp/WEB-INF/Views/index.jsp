@@ -19,6 +19,8 @@
         <th>Login</th>
         <th>Email</th>
         <th>createDate</th>
+        <th>Imagine</th>
+        <th>Download Imagine</th>
         <th>Delete user</th>
         <th>Edit user</th>
     </tr>
@@ -30,6 +32,8 @@
         <td><c:out value="${user.login}"></c:out></td>
         <td><c:out value="${user.email}"></c:out></td>
         <td><c:out value="${user.createDate}"></c:out></td>
+        <td><img src="${pageContext.servletContext.contextPath}/download?name=${user.photoId}" width="100px" height="100px"/></td>
+        <td><a href="${pageContext.servletContext.contextPath}/download?name=${user.photoId}">Download</a></td>
         <td>
             <form action="${pageContext.servletContext.contextPath}/" method="post">
                 <input type="hidden" name="action" value="delete"/>

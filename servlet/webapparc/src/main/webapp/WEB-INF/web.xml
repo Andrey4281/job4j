@@ -5,9 +5,29 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <servlet>
+        <servlet-name>presentation.UserUploadServlet</servlet-name>
+        <servlet-class>presentation.UserUploadServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>presentation.DownloadServlet</servlet-name>
+        <servlet-class>presentation.DownloadServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>presentation.UserServlet</servlet-name>
         <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>presentation.UserUploadServlet</servlet-name>
+        <url-pattern>/create</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>presentation.DownloadServlet</servlet-name>
+        <url-pattern>/download</url-pattern>
     </servlet-mapping>
 
 </web-app>

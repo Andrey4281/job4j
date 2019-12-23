@@ -31,10 +31,11 @@ public class DBStore implements Store {
     @Override
     public void add(User user) {
         try (Connection connection = source.getConnection();
-             PreparedStatement st = connection.prepareStatement("INSERT INTO users(name, login, email) VALUES(?, ?, ?);")) {
+             PreparedStatement st = connection.prepareStatement("INSERT INTO users(name, login, email, photoid) VALUES(?, ?, ?, ?);")) {
             st.setString(1, user.getName());
             st.setString(2, user.getLogin());
             st.setString(3, user.getEmail());
+            st.setString(4, user.getPhotoId());
             st.executeUpdate();
             LOG.info(String.format("User %s was added to datebase", user.getName()));
         } catch (SQLException e) {
@@ -46,11 +47,12 @@ public class DBStore implements Store {
     public User update(User user) {
         User res = null;
         try (Connection connection = source.getConnection();
-        PreparedStatement st = connection.prepareStatement("UPDATE users SET name=?,login=?,email=? WHERE id=?;")) {
+        PreparedStatement st = connection.prepareStatement("UPDATE users SET name=?,login=?,email=?, photoid=? WHERE id=?;")) {
             st.setString(1, user.getName());
             st.setString(2, user.getLogin());
             st.setString(3, user.getEmail());
-            st.setInt(4, user.getId());
+            st.setString(4, user.getPhotoId());
+            st.setInt(5, user.getId());
             if (st.executeUpdate() >= 1) {
                 LOG.info(String.format("User %s was updated", user.getName()));
                 res = user;
@@ -84,7 +86,8 @@ public class DBStore implements Store {
              ResultSet set = connection.prepareStatement("SELECT * FROM users;").executeQuery()) {
             while (set.next()) {
                 list.add(new User(set.getInt("id"), set.getString("name"),
-                        set.getString("login"), set.getString("email"), set.getDate("createdate")));
+                        set.getString("login"), set.getString("email"), set.getDate("createdate"),
+                        set.getString("photoid")));
             }
         } catch (SQLException e) {
             LOG.error(e.getMessage(), e);
@@ -101,7 +104,8 @@ public class DBStore implements Store {
             try (ResultSet set = st.executeQuery()) {
                 if (set.next()) {
                     user = new User(set.getInt("id"), set.getString("name"),
-                            set.getString("login"), set.getString("email"), set.getDate("createdate"));
+                            set.getString("login"), set.getString("email"), set.getDate("createdate"),
+                            set.getString("photoid"));
                 }
             }
         } catch (SQLException e) {

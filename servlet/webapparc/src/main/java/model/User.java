@@ -9,6 +9,7 @@ public class User {
     private String login;
     private String email;
     private Date createDate;
+    private String photoId;
 
     public User() {
 
@@ -22,6 +23,20 @@ public class User {
         this.email = email;
         this.createDate = createDate;
     }
+
+    public User(int id, String name, String login, String email, Date createDate, String photoId) {
+        this(id, name, login, email, createDate);
+        this.photoId = photoId;
+    }
+
+    public String getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(String photoId) {
+        this.photoId = photoId;
+    }
+
 
     public void setId(int id) {
         this.id = id;

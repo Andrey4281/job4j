@@ -1,5 +1,6 @@
 package presentation;
 
+import com.google.common.base.Joiner;
 import logic.Validate;
 import logic.ValidateImpl;
 import model.User;
@@ -9,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,9 +26,19 @@ public class UserServlet extends HttpServlet {
         private final Map<String, Function<User, Boolean>> dispatch = new HashMap<>();
 
         public void init() {
-            dispatch.put("add", logic::add);
             dispatch.put("update", logic::update);
-            dispatch.put("delete", logic::delete);
+            dispatch.put("delete", user-> {
+                User res = logic.findById(user.getId());
+                boolean flag = true;
+                if (res != null) {
+                    logic.delete(res);
+                    File imagine = new File(Joiner.on(File.separator).join("images", res.getPhotoId()));
+                    imagine.delete();
+                } else {
+                    flag = false;
+                }
+                return flag;
+            });
         }
     }
 
