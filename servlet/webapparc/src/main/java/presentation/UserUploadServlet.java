@@ -2,6 +2,7 @@ package presentation;
 
 import com.google.common.base.Joiner;
 import logic.ValidateImpl;
+import model.Role;
 import model.User;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -43,6 +44,14 @@ public class UserUploadServlet extends HttpServlet {
             dispatch.put("file", (user, param)-> {
                user.setPhotoId(param);
             });
+            dispatch.put("password", (user, param)-> {
+               user.setPassword(param);
+            });
+            dispatch.put("role", (user, param) -> {
+                Role role = new Role();
+                role.setRoleName(param);
+                user.setRole(role);
+            });
         }
     }
 
@@ -50,6 +59,11 @@ public class UserUploadServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         this.pattern.init();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/WEB-INF/Views/create.jsp").forward(req, resp);
     }
 
     @Override

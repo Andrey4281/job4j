@@ -1,13 +1,12 @@
 package persistent;
 
 import model.User;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public enum StoreMemory implements Store {
+public enum DAOUserMemory implements DAOUser {
     INSTANCE;
     private final AtomicInteger idForUsers = new AtomicInteger(0);
     private final ConcurrentHashMap<Integer, User> users = new ConcurrentHashMap<>();
@@ -42,5 +41,10 @@ public enum StoreMemory implements Store {
     @Override
     public User findById(int id) {
         return users.get(id);
+    }
+
+    @Override
+    public User findUserByLogin(String login) {
+        throw new UnsupportedOperationException();
     }
 }

@@ -5,11 +5,31 @@ import java.util.Objects;
 
 public class User {
     private int id;
+    private Role role;
     private String name;
     private String login;
+    private String password;
     private String email;
     private Date createDate;
     private String photoId;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     public User() {
 
@@ -26,6 +46,16 @@ public class User {
 
     public User(int id, String name, String login, String email, Date createDate, String photoId) {
         this(id, name, login, email, createDate);
+        this.photoId = photoId;
+    }
+
+    public User(int id, Role role, String name, String login, String email, Date createDate, String photoId) {
+        this.id = id;
+        this.role = role;
+        this.name = name;
+        this.login = login;
+        this.email = email;
+        this.createDate = createDate;
         this.photoId = photoId;
     }
 
