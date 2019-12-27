@@ -1,15 +1,18 @@
 package logic;
 
+import model.Role;
 import model.User;
-import persistent.DBStore;
-import persistent.Store;
-import persistent.StoreMemory;
+import persistent.DAORole;
+import persistent.DBDAORole;
+import persistent.DBDAOUser;
+import persistent.DAOUser;
 
 import java.util.List;
 
 public class ValidateImpl implements Validate {
     private static final Validate INSTANCE = new ValidateImpl();
-    private final Store store = DBStore.getInstance();
+    private final DAOUser daoUser = DBDAOUser.getInstance();
+    private final DAORole daoRole = DBDAORole.getInstance();
 
     private ValidateImpl() {
 
@@ -21,13 +24,13 @@ public class ValidateImpl implements Validate {
 
     @Override
     public boolean add(User user) {
-        store.add(user);
+        daoUser.add(user);
         return true;
     }
 
     @Override
     public boolean update(User user) {
-        User res = store.update(user);
+        User res = daoUser.update(user);
         boolean flag = true;
         if (res == null) {
             flag = false;
@@ -37,7 +40,7 @@ public class ValidateImpl implements Validate {
 
     @Override
     public boolean delete(User user) {
-        User res = store.delete(user);
+        User res = daoUser.delete(user);
         boolean flag = true;
         if (res == null) {
             flag = false;
@@ -47,11 +50,21 @@ public class ValidateImpl implements Validate {
 
     @Override
     public User findById(int id) {
-        return store.findById(id);
+        return daoUser.findById(id);
     }
 
     @Override
     public List<User> findAll() {
-        return store.findAll();
+        return daoUser.findAll();
+    }
+
+    @Override
+    public User findUserByLogin(String login) {
+        return daoUser.findUserByLogin(login);
+    }
+
+    @Override
+    public List<Role> findAllRoles() {
+        return daoRole.findAllRoles();
     }
 }

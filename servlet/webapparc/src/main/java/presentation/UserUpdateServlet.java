@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class UserUpdateServlet extends HttpServlet {
+public final class UserUpdateServlet extends HttpServlet {
     private final Validate logic = ValidateImpl.getInstance();
 
     @Override

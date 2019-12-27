@@ -3,6 +3,7 @@ package presentation;
 import com.google.common.base.Joiner;
 import logic.Validate;
 import logic.ValidateImpl;
+import model.Role;
 import model.User;
 
 import javax.servlet.ServletConfig;
@@ -10,13 +11,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-public class UserServlet extends HttpServlet {
+public final class UserServlet extends HttpServlet {
     private static final String LN = System.getProperty("line.separator");
     private final Validate logic = ValidateImpl.getInstance();
     private final DispatchPattern pattern = new DispatchPattern();
@@ -46,10 +48,17 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String address;
         if ("update".equals(req.getParameter("action"))) {
-            address = "/WEB-INF/Views/edit.jsp";
+            User currentUser = (User) req.getSession().getAttribute("user");
+            if (currentUser.getRole().getRoleName().equals("user")) {
+                address = "/WEB-INF/Views/editForUser.jsp";
+            } else {
+                address = "/WEB-INF/Views/edit.jsp";
+                req.setAttribute("roles", logic.findAllRoles());
+            }
             req.setAttribute("user", logic.findById(Integer.parseInt(req.getParameter("id"))));
         } else if ("add".equals(req.getParameter("action"))) {
             address = "/WEB-INF/Views/create.jsp";
+            req.setAttribute("roles", logic.findAllRoles());
         } else {
             address = "/WEB-INF/Views/index.jsp";
             req.setAttribute("users", logic.findAll());
@@ -65,6 +74,17 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = buildUserFromRequest(req);
+        updateUserInSessionIfNeeded(req, user);
+
+        if (!pattern.dispatch.get(req.getParameter("action")).apply(user)) {
+            resp.setContentType("text/html");
+            resp.getOutputStream().println("Invalid operation!");
+        }
+        resp.sendRedirect(String.format("%s/", req.getContextPath()));
+    }
+
+    private User buildUserFromRequest(HttpServletRequest req) {
         User user = new User();
         if (req.getParameter("id") != null) {
             user.setId(Integer.parseInt(req.getParameter("id")));
@@ -72,10 +92,25 @@ public class UserServlet extends HttpServlet {
         user.setName(req.getParameter("name"));
         user.setLogin(req.getParameter("login"));
         user.setEmail(req.getParameter("email"));
-        if (!pattern.dispatch.get(req.getParameter("action")).apply(user)) {
-            resp.setContentType("text/html");
-            resp.getOutputStream().println("Invalid operation!");
+        user.setPassword(req.getParameter("password"));
+        Role role = new Role();
+        if (req.getParameter("role") == null) {
+            role.setRoleName("user");
+        } else {
+            role.setRoleName(req.getParameter("role"));
         }
-        resp.sendRedirect(String.format("%s/", req.getContextPath()));
+        user.setRole(role);
+        return user;
+    }
+
+    private void updateUserInSessionIfNeeded(HttpServletRequest req, User user) {
+        HttpSession session = req.getSession();
+        User currentUser = (User) session.getAttribute("user");
+        if (currentUser.getRole().getRoleName().equals("user")
+                && req.getParameter("action").equals("update")) {
+            user.setPhotoId(currentUser.getPhotoId());
+            user.setCreateDate(currentUser.getCreateDate());
+            session.setAttribute("user", user);
+        }
     }
 }

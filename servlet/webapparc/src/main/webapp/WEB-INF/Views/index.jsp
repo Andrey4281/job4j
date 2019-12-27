@@ -18,7 +18,8 @@
         <th>Name</th>
         <th>Login</th>
         <th>Email</th>
-        <th>createDate</th>
+        <th>CreateDate</th>
+        <th>Role</th>
         <th>Imagine</th>
         <th>Download Imagine</th>
         <th>Delete user</th>
@@ -32,6 +33,7 @@
         <td><c:out value="${user.login}"></c:out></td>
         <td><c:out value="${user.email}"></c:out></td>
         <td><c:out value="${user.createDate}"></c:out></td>
+        <td><c:out value="${user.role.roleName}"></c:out></td>
         <td><img src="${pageContext.servletContext.contextPath}/download?name=${user.photoId}" width="100px" height="100px"/></td>
         <td><a href="${pageContext.servletContext.contextPath}/download?name=${user.photoId}">Download</a></td>
         <td>
@@ -56,6 +58,9 @@
 <form action="${pageContext.servletContext.contextPath}/" method="get">
     <input type="hidden" name="action" value="add"/>
     <input type="submit" value="Add new User to System"/>
+</form><br><br>
+<form action="${pageContext.servletContext.contextPath}/signout" method="post">
+    <input type="submit" value="Exit from system"/>
 </form>
 </body>
 </html>
