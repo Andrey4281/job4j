@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DBDAOUser implements DAOUser {
-    private static final Logger LOG = LogManager.getLogger(DBDAOUser.class);
+    //private static final Logger LOG = LogManager.getLogger(DBDAOUser.class);
     private static final DBDAOUser INSTANCE = new DBDAOUser();
     private final DBConfig config = DBConfigPostgreSQL.getInstance();
     private final DAORole roles = DBDAORole.getInstance();
@@ -32,9 +32,9 @@ public class DBDAOUser implements DAOUser {
             st.setString(5, user.getPassword());
             st.setInt(6, roles.findRoleByName(user.getRole().getRoleName()).getId());
             st.executeUpdate();
-            LOG.info(String.format("User %s was added to datebase", user.getName()));
+            //LOG.info(String.format("User %s was added to datebase", user.getName()));
         } catch (SQLException e) {
-            LOG.error(e.getMessage(), e);
+            //LOG.error(e.getMessage(), e);
         }
     }
 
@@ -50,11 +50,11 @@ public class DBDAOUser implements DAOUser {
             st.setInt(5, roles.findRoleByName(user.getRole().getRoleName()).getId());
             st.setInt(6, user.getId());
             if (st.executeUpdate() >= 1) {
-                LOG.info(String.format("User %s was updated", user.getName()));
+                //LOG.info(String.format("User %s was updated", user.getName()));
                 res = user;
             }
         } catch (SQLException e) {
-            LOG.error(e.getMessage(), e);
+            //LOG.error(e.getMessage(), e);
         }
         return res;
     }
@@ -66,11 +66,11 @@ public class DBDAOUser implements DAOUser {
         PreparedStatement st = connection.prepareStatement("DELETE FROM users WHERE id=?;")) {
             st.setInt(1, user.getId());
             if (st.executeUpdate() >= 1) {
-                LOG.info(String.format("User %d was deleted", user.getId()));
+                //LOG.info(String.format("User %d was deleted", user.getId()));
                 res = user;
             }
         } catch (SQLException e) {
-            LOG.error(e.getMessage(), e);
+            //LOG.error(e.getMessage(), e);
         }
         return res;
     }
@@ -88,7 +88,7 @@ public class DBDAOUser implements DAOUser {
                 list.add(user);
             }
         } catch (SQLException e) {
-            LOG.error(e.getMessage(), e);
+            //LOG.error(e.getMessage(), e);
         }
         return list;
     }
@@ -108,7 +108,7 @@ public class DBDAOUser implements DAOUser {
                 }
             }
         } catch (SQLException e) {
-            LOG.error(e.getMessage(), e);
+            //LOG.error(e.getMessage(), e);
         }
         return user;
     }
@@ -128,7 +128,7 @@ public class DBDAOUser implements DAOUser {
                 }
             }
         } catch (SQLException e) {
-            LOG.error(e.getMessage(), e);
+            //LOG.error(e.getMessage(), e);
         }
         return user;
     }

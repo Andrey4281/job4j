@@ -12,7 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DBDAORole implements DAORole {
-    private static final Logger LOG = LogManager.getLogger(DBDAORole.class);
+    //private static final Logger LOG = LogManager.getLogger(DBDAORole.class);
     private final DBConfig config = DBConfigPostgreSQL.getInstance();
     private static final DBDAORole INSTANCE = new DBDAORole();
 
@@ -35,7 +35,7 @@ public class DBDAORole implements DAORole {
                 }
             }
         } catch (SQLException e) {
-            LOG.error(e.getMessage(), e);
+            //LOG.error(e.getMessage(), e);
         }
         return role;
     }
@@ -52,7 +52,7 @@ public class DBDAORole implements DAORole {
                 }
             }
         } catch (SQLException e) {
-            LOG.error(e.getMessage(), e);
+            //LOG.error(e.getMessage(), e);
         }
         return role;
     }
@@ -66,7 +66,7 @@ public class DBDAORole implements DAORole {
                 list.add(new Role(set.getInt("id"), set.getString("rolename")));
             }
         } catch (SQLException e) {
-            LOG.error(e.getMessage(), e);
+            //LOG.error(e.getMessage(), e);
         }
         return list;
     }
