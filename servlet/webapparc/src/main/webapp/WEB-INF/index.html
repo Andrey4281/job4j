@@ -7,12 +7,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function validate() {
+            var res = true;
+            if ($('#firstName').val() === "") {
+                alert('You must enter ' + $('#firstName').attr('name'));
+                res = false;
+            }
+            if ($('#secondName').val() === "") {
+                alert('You must enter ' + $('#secondName').attr('name'));
+                res = false;
+            }
+            return res;
+        }
+    </script>
 </head>
 <body>
 
 <div class="container">
     <h2>Enter your personality data:</h2>
-    <form action="/">
+    <form action="/" onsubmit="return validate();">
         <div class="form-group">
             <label for="firstName">First Name:</label>
             <input type="text" class="form-control" id="firstName" placeholder="Enter first name" name="firstName">
