@@ -110,17 +110,21 @@ public class User {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         User user = (User) o;
-        return id == user.id &&
-                Objects.equals(role, user.role) &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(login, user.login) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(createDate, user.createDate) &&
-                Objects.equals(photoId, user.photoId);
+        return id == user.id
+                && Objects.equals(role, user.role)
+                && Objects.equals(name, user.name)
+                && Objects.equals(login, user.login)
+                && Objects.equals(password, user.password)
+                && Objects.equals(email, user.email)
+                && Objects.equals(createDate, user.createDate)
+                && Objects.equals(photoId, user.photoId);
     }
 
     @Override

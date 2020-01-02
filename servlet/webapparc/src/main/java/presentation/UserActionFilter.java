@@ -38,6 +38,7 @@ public class UserActionFilter implements Filter {
 
     private boolean checkRequest(HttpServletRequest request) {
         return request.getRequestURI().contains("/signin") || request.getRequestURI().contains("/download") || request.getRequestURI().contains("/signout")
-                || (request.getParameter("action") != null && request.getParameter("action").equals("update"));
+                || (request.getParameter("action") != null && request.getParameter("action").equals("update") || request.getRequestURI().contains("/static")
+                || request.getRequestURI().contains("/json"));
     }
 }

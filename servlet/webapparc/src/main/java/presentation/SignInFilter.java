@@ -16,7 +16,8 @@ public class SignInFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpSession session = request.getSession();
-        if (request.getRequestURI().contains("/signin")) {
+        if (request.getRequestURI().contains("/signin") || request.getRequestURI().contains("/static")
+        || request.getRequestURI().contains("/json")) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else if (session.getAttribute("user") == null) {
                     ((HttpServletResponse) servletResponse).sendRedirect(String.format("%s/signin", request.getContextPath()));

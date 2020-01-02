@@ -1,5 +1,21 @@
 <web-app>
     <servlet>
+        <servlet-name>default</servlet-name>
+        <servlet-class>
+            org.apache.catalina.servlets.DefaultServlet
+        </servlet-class>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>0</param-value>
+        </init-param>
+        <init-param>
+            <param-name>listings</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
         <servlet-name>presentation.UserServlet</servlet-name>
         <servlet-class>presentation.UserServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
@@ -23,6 +39,11 @@
     <servlet>
         <servlet-name>presentation.SignOutServlet</servlet-name>
         <servlet-class>presentation.SignOutServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>presentation.JSONServlet</servlet-name>
+        <servlet-class>presentation.JSONServlet</servlet-class>
     </servlet>
 
     <filter>
@@ -58,6 +79,16 @@
     <servlet-mapping>
         <servlet-name>presentation.SignOutServlet</servlet-name>
         <url-pattern>/signout</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>presentation.JSONServlet</servlet-name>
+        <url-pattern>/json</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/static/*</url-pattern>
     </servlet-mapping>
 
     <filter-mapping>

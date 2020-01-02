@@ -32,6 +32,41 @@
             }
             return res;
         }
+        
+        function sendData() {
+            if (validate()) {
+             var object = {
+                 firstName: $('#firstName').val(),
+                 secondName: $('#secondName').val(),
+                 sex: $('#sex').val(),
+                 description: $('#description').val()
+             };
+             $.ajax({
+                 url: '../json',
+                 type: 'POST',
+                 data: JSON.stringify(object),
+                 contentType: 'application/json; charset=utf-8',
+                 success: alert("Success")
+             })
+            }
+        }
+        
+        function getData() {
+            $.ajax({
+                url: '../json',
+                type: 'GET',
+                dataType: 'json',
+                complete: function (data) {
+                    var users = JSON.parse(data.responseText);
+                    for (var i = 0; i < users.length; i++) {
+                        $('#table tr:last').after('<tr><td>' + users[i].firstName + '</td>'
+                            + '<td>' + users[i].secondName +'</td>'
+                            + '<td>' + users[i].sex + '</td>'
+                            + '<td>' + users[i].description +'</td></tr>');
+                    }
+                }
+            })
+        }
     </script>
 </head>
 <body>
@@ -68,6 +103,14 @@
 
         <div class="form-group">
             <input type="button" value="Add new user" class="btn btn-default" onclick="addRow();">
+        </div>
+
+        <div class="form-group">
+            <input type="button" value="SendAjax" class="btn btn-default" onclick="sendData();">
+        </div>
+
+        <div class="form-group">
+            <input type="button" value="GetAjax" class="btn btn-default" onclick="getData();">
         </div>
 
         <div class = "form-group">
