@@ -34,8 +34,10 @@ public final class UserServlet extends HttpServlet {
                 boolean flag = true;
                 if (res != null) {
                     logic.delete(res);
-                    File imagine = new File(Joiner.on(File.separator).join("images", res.getPhotoId()));
-                    imagine.delete();
+                    if (res.getPhotoId() != null) {
+                        File imagine = new File(Joiner.on(File.separator).join("images", res.getPhotoId()));
+                        imagine.delete();
+                    }
                 } else {
                     flag = false;
                 }

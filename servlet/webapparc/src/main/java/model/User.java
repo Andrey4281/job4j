@@ -118,14 +118,17 @@ public final class User {
         }
         User user = (User) o;
         return id == user.id
-                && createDate == user.createDate
+                && Objects.equals(role, user.role)
                 && Objects.equals(name, user.name)
                 && Objects.equals(login, user.login)
-                && Objects.equals(email, user.email);
+                && Objects.equals(password, user.password)
+                && Objects.equals(email, user.email)
+                && Objects.equals(createDate, user.createDate)
+                && Objects.equals(photoId, user.photoId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, login, email, createDate);
+        return Objects.hash(id, role, name, login, password, email, createDate, photoId);
     }
 }
