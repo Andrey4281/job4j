@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="userOne" class="models.User">
+        <property name="name" value="Andrey"/>
+    </bean>
+
+    <bean id="userTwo" class="models.User">
+        <property name="name" value="Petr"/>
+    </bean>
+
+    <bean id="memoryStorage" class="storage.MemoryStorage"/>
+
+    <bean id="storageService" class="service.StorageService">
+        <constructor-arg ref="memoryStorage"/>
+    </bean>
+
+</beans>
